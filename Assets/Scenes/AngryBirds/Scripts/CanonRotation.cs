@@ -32,11 +32,11 @@ public class CanonRotation : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             ProjectileSpeed += 4*Time.deltaTime;//cada segon s'ha de fer 4 unitats m�s gran
-            
+            ProjectileSpeed = Mathf.Clamp(ProjectileSpeed,MinSpeed,MaxSpeed);
         }
         if(Input.GetMouseButtonUp(0))
         {
-            var projectile = Instantiate(Bullet,ShootPoint.transform.position,ShootPoint.transform.rotation); //On s'instancia? Deberia ser ShootPoint pero no creo que sea buena idea crear una relacion padre e hijo entre los dos
+            var projectile = Instantiate(Bullet,ShootPoint.transform.position,ShootPoint.transform.rotation); //On s'instancia? Deberia ser ShootPoint pero no creo que sea buena idea crear una relacion padre e hijo entre los dos.
             projectile.GetComponent<Rigidbody2D>().velocity = ProjectileSpeed * Vector3.Normalize(ShootPoint.transform.position-transform.position);//quina velocitat ha de tenir la bala? 
             ProjectileSpeed = 0f; //reset despr�s del tret
         }
